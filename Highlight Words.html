@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Highlight Words</title>
+  <style>
+    /* membuat kolom */
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+    /* menambahkan margin pada setiap elemen */
+    .container > * {
+      margin-bottom: 10px;
+    }
+    /* memperbesar input text */
+    input[type="text"] {
+      width: 100%;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <label for="known-words">Known Words:</label>
+    <input type="text" id="known-words" placeholder="Enters the words you know">
+
+    <label for="input-sentence">Input Sentence:</label>
+    <input type="text" id="input-sentence" placeholder="Input sentences">
+
+    <button onclick="process()">Process</button>
+
+    <label for="result">Result:</label>
+    <input type="text" id="result" readonly>
+  </div>
+
+  <script>
+    function process() {
+      let knownWords = document.getElementById('known-words').value.toLowerCase().split(' ');
+      let sentence = document.getElementById('input-sentence').value.toLowerCase().split(' ');
+
+      let result = '';
+      for (let i = 0; i < sentence.length; i++) {
+        let word = sentence[i];
+        if (knownWords.includes(word)) {
+          result += word + ' ';
+        } else {
+          result += 'X ';
+        }
+      }
+
+      document.getElementById('result').value = result.trim();
+    }
+  </script>
+</body>
+</html>
